@@ -1,37 +1,24 @@
-CC=cc
-LD=$(CC)
-CCOPT=
+TARGET   = fractals
 
-%.o : %.c
-	$(CC) -c $(CCOPT) -o $@ $<
+CC       = cc
+CFLAGS   =
 
-program : release
+LINKER   = cc
+LFLAGS   = -lm
 
-# test target too
+SOURCES  := $(wildcard *.c)
+INCLUDES := $(wildcard *.h)
+OBJECTS  := $(SOURCES:%.c=%.o)
 
-release : CCOPT += -O3 -DNDEBUG
-debug   : CCOPT += -g -DDEBUG
+$(TARGET): $(OBJECTS)
+	@$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
+	@echo "Linking complete!"
 
-release : main.o image.o fractal.o
-	$(LD) -o $@ $^
+$(OBJECTS): %.o : %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled "$<" successfully!"
 
-debug   : main.o image.o fractal.o
-	$(LD) -o $@ $^
-
-clean :
-	- rm *.o
-	- rm *.hdrdep.bak
-
-cleanall : clean
-	- rm release debug
-	- echo > makefile.hdrdep
-
-mrproper : cleanall
-
-# Advanced feature: #include file dependencies
-# Run `make depends` before `make all`
-
-depends :
-	makedepend -f makefile.hdrdep *.c
-
-include makefile.hdrdep
+.PHONY: clean
+clean:
+	@rm -f $(OBJECTS)
+	@echo "Cleanup complete!"
