@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 /**
- * @brief One pixel data in-place 
+ * @brief One pixel data in-place
  */
 typedef uint8_t pixel_data;
 
@@ -56,11 +56,11 @@ int save_pgm(image_p picture, const char *filename);
 
 /**
  * @brief Set the pixel of an image to given color
- * 
+ *
  * @param picture Image
  * @param x,y Pixel coordinates
  * @param color Color value
  */
 void set_pixel(image_p picture, pixel_coord x, pixel_coord y, pixel_data color);
 
-#endif // _IMAGE_H_
+#endif  // _IMAGE_H_

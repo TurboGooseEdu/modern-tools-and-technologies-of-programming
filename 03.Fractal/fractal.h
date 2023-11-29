@@ -4,17 +4,18 @@
 #include "image.h"
 
 /**
- * @brief Draws sierpinski carpet on the given image (gaps are filled with black)
+ * @brief Draws sierpinski carpet on the given image (gaps are filled with
+ * black)
  *
- * @param picture 
+ * @param picture
  */
 void draw_sierpinski_carpet(image_p picture);
 
 /**
  * @brief Draws mandelbrot set on the given image (gaps are filled with black)
  *
- * @param picture 
+ * @param picture
  */
 void draw_mandelbrot_set(image_p picture);
 
-#endif // _FRACTAL_H_
+#endif  // _FRACTAL_H_
